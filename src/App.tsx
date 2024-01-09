@@ -1,50 +1,91 @@
-import "./Styles/Main.sass"
-import "./Styles/Reset.sass"
-import { useState } from 'react'
-import Header from "./Components/Header/Header";
-import {Parking} from "./Types";
-import Breadcrumbs from "./Components/Breadcrumbs/Breadcrumbs";
-import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
-import ParkingPage from "./Pages/ParkingPage/ParkingPage";
-import ParkingsList from "./Pages/ParkingsList/ParkingsList";
-import ProfilePage from "./Pages/ProfilePage/ProfilePage";
+import "./styles/Main.sass"
+import "./styles/Reset.sass"
+import Header from "./components/Header/Header";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import {BrowserRouter, Route, Routes, Navigate, useLocation} from 'react-router-dom';
+import ParkingPage from "./pages/ParkingPage/ParkingPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import {QueryClient, QueryClientProvider } from "react-query";
+import {Provider} from "react-redux"
+import store from "./store/store"
+import ParkingsPage from "./pages/ParkingsPage/ParkingsPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import {useAuth} from "./hooks/users/useAuth";
+import TicketConstructor from "./components/TicketConstructor/TicketConstructor";
+import TicketPage from "./pages/TicketPage/TicketPage";
+import TicketsPage from "./pages/TicketsPage/TicketsPage";
+
+
+const TopPanelWrapper = () => {
+
+    const {is_authenticated, is_moderator} = useAuth()
+
+    const location = useLocation()
+
+    return (
+        <div className="top-panel-wrapper">
+            <Breadcrumbs />
+            {is_authenticated && !is_moderator && location.pathname.endsWith("parkings") && <TicketConstructor /> }
+        </div>
+    )
+}
+
 
 function App() {
 
-    const [selectedParking, setSelectedParking] = useState<Parking | undefined>(undefined)
+    const queryClient = new QueryClient()
 
     return (
-        <BrowserRouter basename="/">
+        <QueryClientProvider client={queryClient}>
 
-            <div className="App">
+            <Provider store={store}>
 
-                <div className="wrapper">
+                <BrowserRouter basename="/bmstu">
 
-                    <Header />
+                    <div className="App">
 
-                    <div className="content-wrapper">
+                        <div className="wrapper">
 
-                        <Breadcrumbs selectedParking={selectedParking} setSelectedParking={setSelectedParking}/>
+                            <Header />
 
-                        <Routes>
+                            <div className={"content-wrapper"}>
 
-                            <Route path="/" element={<Navigate to="/parkings" replace />} />
+                                <TopPanelWrapper />
 
-                            <Route path="/profile" element={<ProfilePage />} />
+                                <Routes>
 
-                            <Route path="/parkings" element={<ParkingsList />} />
+                                    <Route path="/" element={<Navigate to="/parkings" replace />} />
 
-                            <Route path="/parkings/:id" element={<ParkingPage selectedParking={selectedParking} setSelectedParking={setSelectedParking} />} />
+                                    <Route path="/profile" element={<ProfilePage />} />
 
-                        </Routes>
+                                    <Route path="/parkings" element={<ParkingsPage />} />
+
+                                    <Route path="/parkings/:id" element={<ParkingPage />} />
+
+                                    <Route path="/profile" element={<ProfilePage />} />
+
+                                    <Route path="/tickets/:id" element={<TicketPage />} />
+
+                                    <Route path="/tickets" element={<TicketsPage />} />
+
+                                    <Route path="/login" element={<LoginPage />} />
+
+                                    <Route path="/register" element={<RegisterPage />} />
+
+                                </Routes>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
+                </BrowserRouter>
 
-            </div>
+            </Provider>
 
-        </BrowserRouter>
+        </QueryClientProvider>
     )
 }
 

@@ -1,66 +1,27 @@
 import "./ParkingPage.sass"
-import {Dispatch, useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
-import {iParkingsMock, requestTime} from "../../Consts";
-import {Parking} from "../../Types";
-import mockImage from "/src/assets/mock.png"
+import {useParking} from "../../hooks/parkings/useParking";
 
-const ParkingPage = ({selectedParking, setSelectedParking}: {
-    selectedParking: Parking | undefined,
-    setSelectedParking: Dispatch<Parking | undefined>
-}) => {
+const ParkingPage = () => {
 
-    const {id} = useParams<{ id: string }>();
-
-    const [isMock, setIsMock] = useState<boolean>(false);
-
+    const { id } = useParams<{id: string}>();
+    
+    const {parking, fetchParking} = useParking()
+    
     useEffect(() => {
-        fetchData()
+        id && fetchParking(id)
     }, [])
 
-    if (id == undefined) {
-        return;
-    }
-
-    const fetchData = async () => {
-
-        try {
-            const response = await fetch(`http://127.0.0.1:8000/api/parkings/${id}`, {
-                method: "GET",
-                signal: AbortSignal.timeout(requestTime)
-            });
-
-            if (!response.ok) {
-                CreateMock()
-                return;
-            }
-
-            const service: Parking = await response.json()
-
-            setSelectedParking(service)
-
-            setIsMock(false)
-
-        } catch {
-            CreateMock()
-        }
-
-    };
-
-    const CreateMock = () => {
-        setSelectedParking(iParkingsMock.find((service: Parking) => service?.id == parseInt(id)))
-        setIsMock(true)
-    }
-
-    const img = `http://127.0.0.1:8000/api/parkings/${id}/image/`
-
-    if (!selectedParking) {
+    if (parking == undefined) {
         return (
-            <div className="page-details-wrapper">
+            <div>
 
             </div>
         )
     }
+
+    const img = `http://127.0.0.1:8000/api/parkings/${id}/image/`
 
     return (
         <div className="page-details-wrapper">
@@ -71,7 +32,7 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
 
             <div className="left">
 
-                <img src={isMock ? mockImage : img} alt=""/>
+                <img src={img}  alt=""/>
 
             </div>
 
@@ -79,19 +40,27 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
 
                 <div className="info-container">
 
-                    <h2 className="name">{selectedParking?.name}</h2>
+                    <h2 className="name">{parking.name}</h2>
 
-                    <br/>
+                    <br />
 
-                    <span>Адрес: {selectedParking?.address}</span>
+                    <span className="description">{parking.description}</span>
 
-                    <br/>
+                    <br />
 
-                    <br/>
+                    <span className="foundation_date">Год основания: {parking.foundation_date}г</span>
 
-                    <span>Количество мест: {selectedParking?.places_count}</span>
+                    <br />
 
-                    <br/>
+                    <span className="grp">Население: {parking.grp} млн</span>
+
+                    <br />
+
+                    <span className="square">Площадь: {parking.square} км^2</span>
+
+                    <br />
+
+                    <span className="climate">Климат: {parking.climate}</span>
 
                 </div>
 

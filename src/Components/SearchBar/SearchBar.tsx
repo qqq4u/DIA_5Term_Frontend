@@ -1,15 +1,20 @@
 import "./SearchBar.sass"
 import {FaSearch} from "react-icons/fa";
 
-// @ts-ignore
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ query, setQuery, onSubmit }) => {
 
     const handleChange = (value: string) => {
         setQuery(value)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        onSubmit()
+    }
+
     return (
-        <form className="search-bar-wrapper" action="/api/parkings/search" method="GET" onSubmit={(e) => e.preventDefault()} >
+        <form className="search-bar-wrapper" onSubmit={handleSubmit} >
 
             <input
                 type="text"

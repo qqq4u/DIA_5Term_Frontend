@@ -1,4 +1,5 @@
 import "./Header.sass"
+import NavMenu from "./NavMenu/NavMenu";
 
 const Header = () => {
     return (
@@ -6,6 +7,10 @@ const Header = () => {
 
             <div className="left-container">
                 <h3>Парковки МГТУ</h3>
+            </div>
+
+            <div className="right-container">
+                <NavMenu/>
             </div>
 
         </div>
