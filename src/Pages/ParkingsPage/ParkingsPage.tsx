@@ -1,7 +1,7 @@
 import "./ParkingsPage.sass"
 import {useAuth} from "../../hooks/users/useAuth";
 import ParkingsList from "./ParkingsList/ParkingsList";
-import ParkingsFilters from "./ParkingsFilters/ParkingsFilters";
+import ParkingsTableWrapper from "./ParkingsTableWrapper/ParkingsTableWrapper";
 
 const ParkingsPage = () => {
 
@@ -10,9 +10,8 @@ const ParkingsPage = () => {
     return (
         <div className="parkings-wrapper">
 
-            <ParkingsFilters />
-
             {!is_moderator && <ParkingsList />}
+            {is_moderator && <ParkingsTableWrapper />}
 
         </div>
     )

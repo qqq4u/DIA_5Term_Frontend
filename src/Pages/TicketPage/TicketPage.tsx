@@ -85,9 +85,8 @@ const TicketPage = () => {
                     <span>Дата создания: {moment(ticket.date_created).locale(ru()).format("D MMMM HH:mm")}</span>
                     {[2, 3, 4].includes(ticket.status) && <span>Дата формирования: {moment(ticket.date_formation).locale(ru()).format("D MMMM HH:mm")}</span>}
                     {completed && <span>Дата завершения: {moment(ticket.date_complete).locale(ru()).format("D MMMM HH:mm")}</span> }
-                    {is_moderator && <span>Покупатель: {ticket.owner.name}</span> }
-                    {is_moderator && <span>Модератор: {ticket.moderator.name}</span>}
-                    {completed && <span>Дата доставки: {ticket.delivery_date > 0 ? pluralDeliveryDate(ticket.delivery_date) : "Нет"}</span>}
+                    {is_moderator && <span>Пользователь: {ticket.owner.name}</span> }
+                    {[2, 3, 4].includes(ticket.status) && <span>Время заезда на парковку: {ticket.entry_time ? moment(ticket.entry_time).locale(ru()).format("D MMMM HH:mm"): "Нет"}</span>}
                 </div>
 
                 <div className="title">

@@ -5,14 +5,16 @@ import {useAuth} from "../../../hooks/users/useAuth";
 import {useTickets} from "../../../hooks/tickets/useTickets";
 import CustomDatePicker from "../../../components/CustomDatePicker/CustomDatePicker";
 import CustomButton from "../../../components/CustomButton/CustomButton";
+import SearchBar from "../../../components/SearchBar/SearchBar";
 
 const TicketsFilters = ({refetch}) => {
 
     const {is_moderator} = useAuth()
 
-    const {status, setStatus, date_start, setDateStart, date_end, setDateEnd} = useTickets()
+    const {status, setStatus, date_start, setDateStart, date_end, setDateEnd, user, setUser} = useTickets()
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         refetch()
     }
 
@@ -21,15 +23,11 @@ const TicketsFilters = ({refetch}) => {
 
             <div className="top-container">
 
-                <h3>Список заказов</h3>
+                <h3>Список абонементов</h3>
 
             </div>
 
-            <div className="bottom-container">
-
-                <CustomDatePicker placeholder="От" value={date_start} setValue={setDateStart}/>
-
-                <CustomDatePicker placeholder="До" value={date_end} setValue={setDateEnd}/>
+            <form className="bottom-container" onSubmit={handleSubmit}>
 
                 <DropdownMenu
                     width={175}
@@ -40,11 +38,17 @@ const TicketsFilters = ({refetch}) => {
                     }}
                 />
 
-                <CustomButton bg={variables.primary} onClick={handleSubmit}>
+                <CustomDatePicker placeholder="От" value={date_start} setValue={setDateStart}/>
+
+                <CustomDatePicker placeholder="До" value={date_end} setValue={setDateEnd}/>
+
+                {is_moderator && <SearchBar query={user} setQuery={setUser} placeholder="Поиск по пользователям..." onSubmit={handleSubmit} />}
+
+                <CustomButton bg={variables.primary}>
                     Применить
                 </CustomButton>
 
-            </div>
+            </form>
 
         </div>
     )

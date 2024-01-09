@@ -15,6 +15,8 @@ import {useAuth} from "./hooks/users/useAuth";
 import TicketConstructor from "./components/TicketConstructor/TicketConstructor";
 import TicketPage from "./pages/TicketPage/TicketPage";
 import TicketsPage from "./pages/TicketsPage/TicketsPage";
+import ParkingEditPage from "./pages/ParkingEditPage/ParkingEditPage";
+import ParkingAddPage from "./pages/ParkingAddPage/ParkingAddPage";
 
 
 const TopPanelWrapper = () => {
@@ -61,7 +63,11 @@ function App() {
 
                                     <Route path="/parkings" element={<ParkingsPage />} />
 
+                                    <Route path="/parkings/add" element={<ParkingAddPage />} />
+
                                     <Route path="/parkings/:id" element={<ParkingPage />} />
+
+                                    <Route path="/parkings/:id/edit" element={<ParkingEditPage />} />
 
                                     <Route path="/profile" element={<ProfilePage />} />
 

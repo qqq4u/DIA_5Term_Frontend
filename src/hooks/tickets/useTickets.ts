@@ -47,9 +47,7 @@ export function useTickets() {
 			}
 		})
 
-		// data = data.filter(ticket => ticket.employer.name.includes(user))
-
-		return data
+		return data.filter(ticket => ticket.owner.name.includes(user))
 
 	}
 

@@ -44,23 +44,11 @@ const ParkingPage = () => {
 
                     <br />
 
-                    <span className="description">{parking.description}</span>
+                    <span className="address">Адресс: {parking.address}</span>
 
                     <br />
 
-                    <span className="foundation_date">Год основания: {parking.foundation_date}г</span>
-
-                    <br />
-
-                    <span className="grp">Население: {parking.grp} млн</span>
-
-                    <br />
-
-                    <span className="square">Площадь: {parking.square} км^2</span>
-
-                    <br />
-
-                    <span className="climate">Климат: {parking.climate}</span>
+                    <span className="places_count">Количество мест: {parking.places_count}г</span>
 
                 </div>
 

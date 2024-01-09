@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
 	useEffect(() => {
 		if (!is_authenticated) {
-			navigate("/thematics")
+			navigate("/parkings")
 		}
 	}, [])
 

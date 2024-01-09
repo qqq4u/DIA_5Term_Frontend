@@ -42,16 +42,11 @@ export function useParkings() {
 		return data["parkings"]
 	}
 
-	const fetchParkings = async () => {
-		searchParkings().then(data => setParkings(data))
-	}
-
 	return {
 		parkings,
 		setParkings,
 		query,
 		setQuery,
-		searchParkings,
-		fetchParkings
+		searchParkings
 	};
 }

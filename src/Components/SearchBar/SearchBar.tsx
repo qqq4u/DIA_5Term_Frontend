@@ -1,35 +1,24 @@
 import "./SearchBar.sass"
-import {FaSearch} from "react-icons/fa";
 
-const SearchBar = ({ query, setQuery, onSubmit }) => {
+const SearchBar = ({ query, setQuery, placeholder }) => {
 
     const handleChange = (value: string) => {
         setQuery(value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        onSubmit()
-    }
-
     return (
-        <form className="search-bar-wrapper" onSubmit={handleSubmit} >
+        <div className="search-bar-wrapper">
 
             <input
                 type="text"
-                placeholder="Поиск..."
+                placeholder={placeholder}
                 name="name"
                 autoComplete="off"
                 value={query}
                 onChange={(e) => handleChange(e.target.value)}
             />
 
-            <button type="submit">
-                <FaSearch className={"search-icon"}/>
-            </button>
-
-        </form>
+        </div>
     )
 }
 

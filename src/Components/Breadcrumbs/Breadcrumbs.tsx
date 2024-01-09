@@ -26,7 +26,7 @@ const Breadcrumbs = () => {
         "profile": "Личный кабинет"
     }
 
-    const exclude_topics = ["edit", "create"]
+    const exclude_topics = ["edit"]
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
 
@@ -49,6 +49,22 @@ const Breadcrumbs = () => {
                 </div>
             )
         }
+
+        if (currentLink.match(new RegExp('add')))
+        {
+            return (
+                <div className={"crumb"} key={crumb}>
+
+                    <Link to={currentLink}>
+                        Новая парковка
+                    </Link>
+
+                    <FaChevronRight className={"chevron-icon"}/>
+
+                </div>
+            )
+        }
+
 
         if (currentLink.match(new RegExp('tickets/(\d*)')))
         {
