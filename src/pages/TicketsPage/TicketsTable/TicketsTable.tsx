@@ -49,7 +49,11 @@ const TicketsTable = () => {
             accessor: "entry_time",
             Cell: ({ value }) => {
                 if (!value) {
-                    return "Нет"
+                    return "Не рассчитано"
+                }
+
+                if (value == "1970-01-01T03:00:00+03:00") {
+                    return "Не удалось рассчитать"
                 }
 
                 return moment(value).locale(ru()).format("D MMMM HH:mm")
@@ -80,8 +84,6 @@ const TicketsTable = () => {
         const formData = new FormData()
 
         formData.append("status", "3")
-
-        console.log(access_token)
 
         const response = await api.put(`tickets/${order_id}/update_status_admin/`, formData, {
             headers: {

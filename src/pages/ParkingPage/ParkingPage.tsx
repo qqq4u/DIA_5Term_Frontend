@@ -40,15 +40,15 @@ const ParkingPage = () => {
 
                 <div className="info-container">
 
-                    <h2 className="name">{parking.name}</h2>
+                    <h2>{parking.name}</h2>
 
                     <br />
 
-                    <span className="address">Адресс: {parking.address}</span>
+                    <span>Адресс: {parking.address}</span>
 
                     <br />
 
-                    <span className="places_count">Количество мест: {parking.places_count}г</span>
+                    <span>Количество мест: {parking.places_count}г</span>
 
                 </div>
 

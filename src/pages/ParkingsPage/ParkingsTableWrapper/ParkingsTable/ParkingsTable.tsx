@@ -50,7 +50,7 @@ const ParkingsTable = ({isLoading, data, isSuccess, refetch}) => {
                 isLoading={isLoading}
                 onClick={openEditCityPage}
             >
-                <ParkingsFilters refetch={refetch} />
+
             </CustomTable>
 
         </div>

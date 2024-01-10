@@ -4,6 +4,7 @@ import {
 } from "../../store/tickets/ticketSlice";
 import {useToken} from "../users/useToken";
 import {api} from "../../utils/api";
+import {useParkings} from "../parkings/useParkings";
 
 export function useTicket() {
 
@@ -70,28 +71,19 @@ export function useTicket() {
 	}
 
 	const addParkingToTicket = async (parking) => {
-
-		const response = await api.post(`parkings/${parking.id}/add_to_ticket/`, {}, {
+		await api.post(`parkings/${parking.id}/add_to_ticket/`, {}, {
 			headers: {
 				'authorization': access_token
 			},
-		});
-
-		if (response.status == 200) {
-			setTicket(response.data)
-		}
+		})
 	}
 
 	const deleteParkingFromTicket = async (parking) => {
-		const response = await api.delete(`tickets/${ticket.id}/delete_parking/${parking.id}/`, {
+		await api.delete(`tickets/${ticket.id}/delete_parking/${parking.id}/`, {
 			headers: {
 				'authorization': access_token
 			},
-		});
-
-		if (response.status == 200) {
-			setTicket(response.data)
-		}
+		})
 	}
 
 	return {

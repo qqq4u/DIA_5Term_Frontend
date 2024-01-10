@@ -60,7 +60,7 @@ const TicketPage = () => {
         return (
             <div className="buttons-wrapper">
 
-                <CustomButton onClick={onSendTicket} bg={variables.primary}>Отправить</CustomButton>
+                <CustomButton onClick={onSendTicket} bg={variables.green}>Отправить</CustomButton>
 
                 <CustomButton onClick={onDeleteTicket} bg={variables.red}>Удалить</CustomButton>
 

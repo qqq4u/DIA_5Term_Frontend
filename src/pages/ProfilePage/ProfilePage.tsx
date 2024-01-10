@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
 	useEffect(() => {
 		if (!is_authenticated) {
-			navigate("/parkings")
+			navigate("/")
 		}
 	}, [])
 
@@ -22,7 +22,7 @@ const ProfilePage = () => {
 
 		await logOut()
 
-		navigate("/thematics")
+		navigate("/")
 	}
 
 	return (

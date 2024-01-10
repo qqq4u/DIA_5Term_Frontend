@@ -10,7 +10,7 @@ const ParkingsPage = () => {
     return (
         <div className="parkings-wrapper">
 
-            {!is_moderator && <ParkingsList />}
+            <ParkingsList />
             {is_moderator && <ParkingsTableWrapper />}
 
         </div>

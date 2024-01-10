@@ -5,6 +5,7 @@ import {useAuth} from "../../hooks/users/useAuth";
 import {useTicket} from "../../hooks/tickets/useTicket";
 import CustomButton from "../CustomButton/CustomButton";
 import {variables} from "../../utils/consts";
+import {useParkings} from "../../hooks/parkings/useParkings";
 
 const ParkingCard = ({ parking }: {parking:Parking}) => {
     
@@ -12,13 +13,18 @@ const ParkingCard = ({ parking }: {parking:Parking}) => {
 
     const {ticket, is_draft, addParkingToTicket, deleteParkingFromTicket} = useTicket()
 
-    const handleAddParking = (e) => {
+    const {searchParkings} = useParkings()
+
+    const handleAddParking = async (e) => {
         e.preventDefault()
-        addParkingToTicket(parking)
+        await addParkingToTicket(parking)
+        await searchParkings()
     }
 
-    const handleDeleteParking = (e) => {
-        deleteParkingFromTicket(parking)
+    const handleDeleteParking = async (e) => {
+        e.preventDefault()
+        await deleteParkingFromTicket(parking)
+        await searchParkings()
     }
 
     const is_chosen = ticket?.parkings.find(g => g.id == parking.id)
@@ -39,12 +45,20 @@ const ParkingCard = ({ parking }: {parking:Parking}) => {
                 </div>
 
                 <div className="content-bottom">
-
+                    {!is_moderator &&
                     <Link to={`/parkings/${parking.id}`}>
                         <CustomButton bg={variables.primary}>
                             Подробнее
                         </CustomButton>
                     </Link>
+                    }
+                    {is_moderator &&
+                        <Link to={`/parkings/${parking.id}/edit`}>
+                            <CustomButton bg={variables.primary}>
+                                Редактировать
+                            </CustomButton>
+                        </Link>
+                    }
                     
                     {is_authenticated && !is_chosen && !is_moderator && location.pathname.includes("parkings") &&
                         <CustomButton onClick={handleAddParking} bg={variables.green}>Добавить</CustomButton>

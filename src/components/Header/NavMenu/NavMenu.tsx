@@ -19,24 +19,24 @@ const NavMenu = () => {
 
             <div className={"menu-wrapper " + (isOpen ? "open" : "")}>
 
-                <Link to="/parkings" className="menu-item">
+                <Link to="/parkings" className="menu-item" onClick={(e) => {setIsOpen(false)}}>
                     <span>Парковки</span>
                 </Link>
 
                 {is_authenticated &&
-                    <Link to="/tickets" className="menu-item">
+                    <Link to="/tickets" className="menu-item" onClick={(e) => {setIsOpen(false)}}>
                         <span>Абонементы</span>
                     </Link>
                 }
 
                 {is_authenticated &&
-                    <Link to="/profile" className="menu-item">
+                    <Link to="/profile" className="menu-item" onClick={(e) => {setIsOpen(false)}}>
                         <span>{user_name}</span>
                     </Link>
                 }
 
                 {!is_authenticated &&
-                    <Link to="/login" className="menu-item">
+                    <Link to="/login" className="menu-item" onClick={(e) => {setIsOpen(false)}}>
                         <span>Вход</span>
                     </Link>
                 }
