@@ -5,13 +5,10 @@ import ParkingsTableWrapper from "./ParkingsTableWrapper/ParkingsTableWrapper";
 
 const ParkingsPage = () => {
 
-    const {is_moderator} = useAuth()
-
     return (
         <div className="parkings-wrapper">
 
             <ParkingsList />
-            {is_moderator && <ParkingsTableWrapper />}
 
         </div>
     )

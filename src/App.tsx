@@ -17,18 +17,19 @@ import TicketPage from "./pages/TicketPage/TicketPage";
 import TicketsPage from "./pages/TicketsPage/TicketsPage";
 import ParkingEditPage from "./pages/ParkingEditPage/ParkingEditPage";
 import ParkingAddPage from "./pages/ParkingAddPage/ParkingAddPage";
+import ParkingsTableWrapper from "./pages/ParkingsPage/ParkingsTableWrapper/ParkingsTableWrapper.tsx";
 
 
 const TopPanelWrapper = () => {
 
-    const {is_authenticated, is_moderator} = useAuth()
+    const {is_authenticated} = useAuth()
 
     const location = useLocation()
 
     return (
         <div className="top-panel-wrapper">
             <Breadcrumbs />
-            {is_authenticated && !is_moderator && location.pathname.endsWith("parkings") && <TicketConstructor /> }
+            {is_authenticated && location.pathname.endsWith("parkings") && <TicketConstructor /> }
         </div>
     )
 }
@@ -62,6 +63,8 @@ function App() {
                                     <Route path="/profile" element={<ProfilePage />} />
 
                                     <Route path="/parkings" element={<ParkingsPage />} />
+
+                                    <Route path="/parkings_table" element={<ParkingsTableWrapper />} />
 
                                     <Route path="/parkings/add" element={<ParkingAddPage />} />
 

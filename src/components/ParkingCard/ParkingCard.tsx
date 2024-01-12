@@ -45,22 +45,13 @@ const ParkingCard = ({ parking }: {parking:Parking}) => {
                 </div>
 
                 <div className="content-bottom">
-                    {!is_moderator &&
                     <Link to={`/parkings/${parking.id}`}>
                         <CustomButton bg={variables.primary}>
                             Подробнее
                         </CustomButton>
                     </Link>
-                    }
-                    {is_moderator &&
-                        <Link to={`/parkings/${parking.id}/edit`}>
-                            <CustomButton bg={variables.primary}>
-                                Редактировать
-                            </CustomButton>
-                        </Link>
-                    }
                     
-                    {is_authenticated && !is_chosen && !is_moderator && location.pathname.includes("parkings") &&
+                    {is_authenticated && !is_chosen && location.pathname.includes("parkings") &&
                         <CustomButton onClick={handleAddParking} bg={variables.green}>Добавить</CustomButton>
                     }
 

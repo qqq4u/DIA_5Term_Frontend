@@ -21,7 +21,7 @@ const TicketPage = () => {
 
     const { id } = useParams<{id: string}>();
 
-    const {ticket, fetchTicket, saveTicket, sendTicket, deleteTicket, setTicket} = useTicket()
+    const {ticket, fetchTicket, sendTicket, deleteTicket, setTicket} = useTicket()
 
     useEffect(() => {
         id && fetchTicket(id)
@@ -41,7 +41,6 @@ const TicketPage = () => {
     }
 
     const onSendTicket = async() => {
-        await saveTicket()
         await sendTicket()
         navigate("/tickets")
     }
@@ -100,7 +99,7 @@ const TicketPage = () => {
                 </div>
             </div>
 
-            {!is_moderator && is_draft && <ButtonsContainer />}
+            {is_draft && <ButtonsContainer />}
 
         </div>
     )

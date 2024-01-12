@@ -49,16 +49,6 @@ export function useTicket() {
 
 	}
 
-	const saveTicket = async () => {
-
-		await api.put(`tickets/${ticket.id}/update/`, {}, {
-			headers: {
-				'authorization': access_token
-			}
-		})
-
-	}
-
 	const fetchTicket = async (ticket_id) => {
 
 		const {data} = await api.get(`tickets/${ticket_id}/`, {
@@ -90,7 +80,6 @@ export function useTicket() {
 		ticket,
 		is_draft,
 		setTicket,
-		saveTicket,
 		sendTicket,
 		deleteTicket,
 		fetchTicket,
