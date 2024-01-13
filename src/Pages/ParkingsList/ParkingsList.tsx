@@ -43,7 +43,12 @@ const ParkingsList = () => {
     const createMock = () => {
 
         setIsMock(true);
-        setParkings(iParkingsMock)
+
+        let filteredParkings:Parking[] = iParkingsMock.filter(parking => parking.status == 1)
+
+        filteredParkings = filteredParkings.filter((parking) => parking.name.toLowerCase().includes(query))
+
+        setParkings(filteredParkings)
 
     }
 
