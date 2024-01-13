@@ -5,12 +5,9 @@ import {iParkingsMock, requestTime} from "../../Consts";
 import {Parking} from "../../Types";
 import mockImage from "/src/assets/mock.png"
 
-const ParkingPage = ({selectedParking, setSelectedParking}: {
-    selectedParking: Parking | undefined,
-    setSelectedParking: Dispatch<Parking | undefined>
-}) => {
+const ParkingPage = ({ selectedParking, setSelectedParking }: { selectedParking:Parking | undefined, setSelectedParking: Dispatch<Parking| undefined>}) => {
 
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{id: string}>();
 
     const [isMock, setIsMock] = useState<boolean>(false);
 
@@ -18,7 +15,7 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
         fetchData()
     }, [])
 
-    if (id == undefined) {
+    if (id == undefined){
         return;
     }
 
@@ -30,7 +27,8 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
                 signal: AbortSignal.timeout(requestTime)
             });
 
-            if (!response.ok) {
+            if (!response.ok)
+            {
                 CreateMock()
                 return;
             }
@@ -41,14 +39,15 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
 
             setIsMock(false)
 
-        } catch {
+        } catch
+        {
             CreateMock()
         }
 
     };
 
     const CreateMock = () => {
-        setSelectedParking(iParkingsMock.find((service: Parking) => service?.id == parseInt(id)))
+        setSelectedParking(iParkingsMock.find((service:Parking) => service?.id == parseInt(id)))
         setIsMock(true)
     }
 
@@ -71,7 +70,7 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
 
             <div className="left">
 
-                <img src={isMock ? mockImage : img} alt=""/>
+                <img src={isMock ? mockImage : img}  alt=""/>
 
             </div>
 
@@ -81,17 +80,11 @@ const ParkingPage = ({selectedParking, setSelectedParking}: {
 
                     <h2 className="name">{selectedParking?.name}</h2>
 
-                    <br/>
+                    <br />
 
                     <span>Адрес: {selectedParking?.address}</span>
 
-                    <br/>
-
-                    <br/>
-
-                    <span>Количество мест: {selectedParking?.places_count}</span>
-
-                    <br/>
+                    <br />
 
                 </div>
 

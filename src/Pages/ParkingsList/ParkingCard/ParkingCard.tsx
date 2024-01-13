@@ -25,7 +25,7 @@ const ParkingCard = ({ order, isMock }: {order:Parking, isMock:boolean }) => {
                 <div className="content-bottom">
 
                     <Link to={`/parkings/${order.id}`}>
-                        ИНФОРМАЦИЯ
+                        Подробнее
                     </Link>
 
                 </div>

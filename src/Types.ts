@@ -4,5 +4,4 @@ export interface Parking {
     address: string,
     status: number,
     image: string
-    places_count: number
 }

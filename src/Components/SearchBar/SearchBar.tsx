@@ -1,7 +1,6 @@
 import "./SearchBar.sass"
 import {FaSearch} from "react-icons/fa";
 
-// @ts-ignore
 const SearchBar = ({ query, setQuery }) => {
 
     const handleChange = (value: string) => {
