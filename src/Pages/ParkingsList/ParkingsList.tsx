@@ -29,6 +29,7 @@ const ParkingsList = () => {
 
             const parkings: Parking[] = await response.json()
 
+            // @ts-ignore
             setParkings(parkings["parkings"])
             setIsMock(false)
 

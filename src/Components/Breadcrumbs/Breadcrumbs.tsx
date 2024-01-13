@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
 
+// @ts-ignore
 const Breadcrumbs = ({ selectedParking, setSelectedParking }) => {
 
     const location = useLocation()
