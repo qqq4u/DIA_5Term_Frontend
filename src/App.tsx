@@ -14,7 +14,7 @@ function App() {
     const [selectedParking, setSelectedParking] = useState<Parking | undefined>(undefined)
 
     return (
-        <BrowserRouter basename="/bmstu">
+        <BrowserRouter basename="/DIA_5Term_Frontend">
 
             <div className="App">
 
