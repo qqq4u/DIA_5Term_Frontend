@@ -28,16 +28,16 @@ const ProfilePage = () => {
 	return (
 		<div className="profile-wrapper">
 
-			<img src={avatar} className="user-avatar" alt=""/>
+			{/*<img src={avatar} className="user-avatar" alt=""/>*/}
 
-			<div className="user-info-wrapper">
-				<span>Имя: {user_name}</span>
-				<span>Почта: {user_email}</span>
-				<span>Статус: {is_moderator ? "Модератор" : "Пользователь"}</span>
+			{/*<div className="user-info-wrapper">*/}
+			{/*	<span>Имя: {user_name}</span>*/}
+			{/*	<span>Почта: {user_email}</span>*/}
+			{/*	<span>Статус: {is_moderator ? "Модератор" : "Пользователь"}</span>*/}
 
 				<CustomButton bg={variables.primary} onClick={doLogOut}>Выйти</CustomButton>
 
-			</div>
+			{/*</div>*/}
 
 		</div>
 	)

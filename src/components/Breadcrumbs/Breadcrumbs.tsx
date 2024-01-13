@@ -23,7 +23,8 @@ const Breadcrumbs = () => {
         "home": "Главная",
         "login": "Вход",
         "register": "Регистрация",
-        "profile": "Личный кабинет"
+        "profile": "Личный кабинет",
+        "parkings_table": "Таблица парковок",
     }
 
     const exclude_topics = ["edit"]

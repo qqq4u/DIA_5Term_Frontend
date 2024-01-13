@@ -18,13 +18,13 @@ const ParkingCard = ({ parking }: {parking:Parking}) => {
     const handleAddParking = async (e) => {
         e.preventDefault()
         await addParkingToTicket(parking)
-        await searchParkings()
+        await searchParkings(false)
     }
 
     const handleDeleteParking = async (e) => {
         e.preventDefault()
         await deleteParkingFromTicket(parking)
-        await searchParkings()
+        await searchParkings(false  )
     }
 
     const is_chosen = ticket?.parkings.find(g => g.id == parking.id)

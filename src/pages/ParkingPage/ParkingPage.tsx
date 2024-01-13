@@ -48,7 +48,7 @@ const ParkingPage = () => {
 
                     <br />
 
-                    <span>Количество мест: {parking.places_count}г</span>
+                    <span>Количество мест: {parking.places_count}</span>
 
                 </div>
 

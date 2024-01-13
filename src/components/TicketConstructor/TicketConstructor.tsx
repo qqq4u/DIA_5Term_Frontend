@@ -8,7 +8,7 @@ const TicketConstructor = () => {
 
     if (ticket == undefined) {
         return (
-            <div className="constructor-container disabled">
+            <div className="constructor-container disabled" >
                 <span className="title">Новый абонемент</span>
             </div>
         )
@@ -17,7 +17,7 @@ const TicketConstructor = () => {
     return (
         <Link to={`/tickets/${ticket.id}`} className="constructor-container">
             <span className="title">Новый абонемент</span>
-            {ticket.parkings.length > 0 && <span className="badge">{ticket.parkings.length}</span>}
+            {/*{ticket.parkings.length > 0 && <span className="badge">{ticket.parkings.length}</span>}*/}
         </Link>
     )
 }
